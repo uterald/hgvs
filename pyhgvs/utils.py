@@ -8,6 +8,7 @@ from .models import Exon
 from .models import Position
 from .models import Transcript
 
+from collections import OrderedDict
 
 def read_refgene(infile):
     """
@@ -105,7 +106,7 @@ def read_transcripts(refgene_file):
     """
     Read all transcripts in a RefGene file.
     """
-    transcripts = {}
+    transcripts = OrderedDict()
     for trans in imap(make_transcript, read_refgene(refgene_file)):
         transcripts[trans.name] = trans
         transcripts[trans.full_name] = trans
